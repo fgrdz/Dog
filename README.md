@@ -1,0 +1,5 @@
+# The DogApi
+Projeto criado em react, para estudo, utilizando a api pública The cat api
+Documentação disponível: https://developers.thecatapi.com/
+## 
+É necessário se registrar para gerar sua própria KEY, é só acessar o site https://thecatapi.com/
