@@ -1,0 +1,16 @@
+.title-container{
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    align-items: center;
+    background-color: #B0E0E6	;
+    color: #fff;
+    margin-bottom: 10px;
+    
+}
+.title-container h1{
+   
+    font-weight: bolder;
+    margin-left: 10px;
+    font-size: 60px;
+}

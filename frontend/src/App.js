@@ -1,38 +1,43 @@
+import './global.css';
 
-import './App.css';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import api from './services/api';
+import Banner from './components/banner';
+import Filter from './components/filter';
 
 function App() {
   const [imagesData, setImagesData] = useState([]);
 
   useEffect(() => {
-    const url = `https://api.thedogapi.com/v1/images/search?limit=20`;
-    const api_key = "DEMO_API_KEY";
+    
+    async function getDogs(){
+      const response = await api.get()
+      setImagesData(response.data)
+    }
+    
+    const delay = setTimeout(() => {
+      getDogs();
+    }, 3000);
 
-    axios.get(url, {
-      headers: {
-        'x-api-key': api_key
-      }
-    })
-    .then((response) => {
-      setImagesData(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-  }, []);
+   
+    return () => clearTimeout(delay);
+  }, [imagesData]);
 
   return (
     <div className="App">
-      <h1>CatApi</h1>
-      <div id="grid" className="row">
-        {imagesData.map((imageData, index) => (
-          <div key={index} className="col col-lg">
-            <img src={imageData.url} alt={`Cat ${index}`} />
-          </div>
-        ))}
-      </div>
+      <Banner/>
+      <Filter/>
+      <section className='feed'>
+            <h1>M a i s  <br/>c a c h o r r i n h o s <br/>*-*</h1>
+            <div id="grid" className="col">
+              {imagesData.map((imageData, index) => (
+                <div key={index} >
+                  <img src={imageData.url} alt={`Dog ${index}`} />
+                </div>
+              ))}
+            </div>
+      </section>
+
     </div>
   );
 }
